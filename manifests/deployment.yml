@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: apigtsba 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apigtsba
+  template:
+    metadata:
+      labels:
+        app: apigtsba 
+    spec:
+      containers:
+        - name: apigtsba 
+          image: groffeazuredevops.azurecr.io/apigtsba
+          ports:
+          - containerPort: 80
