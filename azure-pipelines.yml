@@ -23,21 +23,23 @@ variables:
 
 
 stages:
-- stage: Build
-  displayName: Build stage
+- stage: Tests
+  displayName: Tests stage
   jobs:
-  - job: Build
-    displayName: Build
+  - job: Tests
+    displayName: Tests
     pool:
       vmImage: $(vmImageName)
     steps:
     - task: DotNetCoreCLI@2
+      displayName: Rodando os testes do SpecFlow
       inputs:
         command: 'test'
         projects: '**/APIFinancas.Especificacoes.csproj'
 
 - stage: Build
   displayName: Build stage
+  dependsOn: Tests
   jobs:
   - job: Build
     displayName: Build
